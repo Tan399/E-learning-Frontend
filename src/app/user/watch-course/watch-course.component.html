@@ -1,0 +1,78 @@
+<div class="watch-course-container">
+  <mat-card class="course-video-card">
+    <mat-card-header>
+      <mat-card-title>Course Video</mat-card-title>
+      <mat-icon class="icon">play_circle_filled</mat-icon>
+    </mat-card-header>
+    <mat-card-content>
+      <video [src]="video" type="video/mp4" autoplay controls width="100%" class="course-video">
+        <p *ngIf="!video">Video not available.</p>
+        <p *ngIf="video">Your browser does not support the video tag.</p>
+      </video>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="feedback-card">
+    <mat-card-header>
+      <mat-card-title>Provide Feedback</mat-card-title>
+      <mat-icon class="icon">feedback</mat-icon>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="fill" class="feedback-form-field">
+        <mat-label>Your Feedback</mat-label>
+        <textarea matInput rows="4" [(ngModel)]="feedback"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="submitFeedback()">
+        <mat-icon class="icon">send</mat-icon>
+        Submit Feedback
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+
+  <div *ngIf="isQuizAvailable">
+
+  <mat-card class="quiz-container">
+    <mat-card-title>Quiz for Course: {{ courseName }}</mat-card-title>
+    <mat-icon class="icon">quiz</mat-icon>
+    
+  
+    <mat-card-content>
+      <h3>{{ quiz.title }}</h3>
+      <p style="color: black;">{{ quiz.description }}</p>
+    </mat-card-content>
+
+    <p *ngIf="hasAttempted" class="attempt-message">You have already attempted this quiz!</p>
+
+    <form *ngIf="quiz && !hasAttempted" (ngSubmit)="submitQuiz()">
+      <div *ngFor="let question of quiz.questions; let i = index">
+        <mat-card class="question-card">
+          <p>{{ i + 1 }}. {{ question.questionText }}</p>
+
+          <mat-radio-group [(ngModel)]="selectedAnswers[i]" name="question{{i}}">
+            <mat-radio-button *ngFor="let answer of question.answers; let j = index" [value]="j">
+              {{ answer.answerText }}
+            </mat-radio-button>
+           
+          </mat-radio-group>
+         
+        </mat-card>
+      </div>
+
+      <button mat-raised-button color="accent" type="submit">
+        <mat-icon class="icon">check_circle</mat-icon>
+        Submit Quiz
+      </button>
+    </form>
+
+    <p style="color: red;" *ngIf="flag">Your score: {{ totalScore }}%</p>
+    
+  </mat-card>
+</div>
+<div *ngIf="show">
+  
+  <p  *ngFor="let a of val" style="color: black; text-align: center;">{{a}}</p>
+
+</div>
+
+</div>

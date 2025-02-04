@@ -1,0 +1,17 @@
+.my-courses-container {
+    padding: 20px;
+  }
+  
+  mat-table {
+    width: 100%;
+  }
+  
+  mat-header-cell, mat-cell {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  mat-cell button {
+    margin-right: 8px;
+  }
+  

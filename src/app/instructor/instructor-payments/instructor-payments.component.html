@@ -1,0 +1,37 @@
+  <div class="results-container">
+    <div class="outer">
+<mat-card class="payments-container">
+    <mat-card-title>Course Payments for Your Courses</mat-card-title>
+    <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z14">
+  
+      <ng-container matColumnDef="courseName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header  style="background-color: #333;color: white; font-weight: bold;"> Course Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.courseName }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="studentName" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header  style="background-color: #333;color: white; font-weight: bold;"> Student Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.studentName }}  </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: #333;color: white; font-weight: bold;"> Amount </mat-header-cell>
+        <mat-cell *matCellDef="let element"> ₹ {{ element.paymentAmount  }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="paymentDate"  style="background-color: #333;color: white; font-weight: bold;">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: #333;color: white; font-weight: bold;"> Payment Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.paymentDate | date: 'medium' }} </mat-cell>
+      </ng-container>
+  
+    
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>
+
+</div>
+  

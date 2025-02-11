@@ -1,6 +1,6 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { InstructorService } from '../instructor.service';
+import { InstructorService } from '../../Services/instructor.service';
 import { EditCourseComponent } from '../edit-course/edit-course.component';
 import { CourseDetailsComponent } from '../course-details/course-details.component';
 import { course2 } from 'src/app/models/course2';
@@ -50,13 +50,13 @@ export class ManageCoursesComponent {
       this.dataSource.data=data
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(data);
+  
     },(err)=>{
-      console.log(err);
+   
     })
   }
 
-  onEdit(course: any) {
+  onEdit(course: course2) {
     const dialogRef = this.dialog.open(EditCourseComponent, {
       width: '600px',
       data: { ...course }, 
@@ -73,10 +73,7 @@ export class ManageCoursesComponent {
         if (index !== -1) {
           this.courses[index] = result;
         }
-        // this.instructorService.updateCourse(result).subscribe(
-        //   (updatedCourse) => console.log('Course updated successfully:', updatedCourse),
-        //   (error) => console.error('Failed to update course:', error)
-        // );
+     
       }
     });
   }
@@ -84,7 +81,7 @@ export class ManageCoursesComponent {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.dataSource.filterPredicate = (data: any, filter: string) => {
+    this.dataSource.filterPredicate = (data: course2, filter: string) => {
       return data.coursename.toLowerCase().includes(filter) || 
              data.description.toLowerCase().includes(filter) || 
              data.level.toLowerCase().includes(filter);
@@ -93,7 +90,7 @@ export class ManageCoursesComponent {
 
  
 
-  onView(course: any) {
+  onView(course: course2) {
     this.dialog.open(CourseDetailsComponent, {
       width: '600px',
       data: { ...course }, 

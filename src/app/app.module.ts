@@ -14,15 +14,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HttpClientModule } from '@angular/common/http';
-import { LoadingComponent } from './loading.component';
-import { LoadingInterceptor } from './auth/interceptors/loading.interceptor';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoaderComponent,
     NavbarComponent,
-    LoadingComponent
+   
   ],
   imports: [
     BrowserModule,
@@ -32,13 +32,13 @@ import { LoadingInterceptor } from './auth/interceptors/loading.interceptor';
     MatButtonModule,
     MatBadgeModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
     
   
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-    // ,{ provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+
   ],
   bootstrap: [AppComponent]
 })

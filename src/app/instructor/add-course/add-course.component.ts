@@ -1,8 +1,10 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { InstructorService } from '../instructor.service';
+import { InstructorService } from '../../Services/instructor.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { categories } from 'src/app/models/categories';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-add-course',
@@ -11,21 +13,9 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class AddCourseComponent {
   courseForm: FormGroup;
+    uploadedImagePreview: string | ArrayBuffer | null | SafeUrl = null;
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  categories = [
-   
-    'Affiliate Marketing',
-    'Business',
-    'Graphic Design',
-    'Marketing',
-    'Calculus',
-    'Health & Fitness',
-    'Photography',
-    'Development',
-    
-   
-    
-    
+  categories:categories[]= [
   ];
 
   @ViewChild("image") imageInput!:ElementRef;
@@ -43,15 +33,27 @@ export class AddCourseComponent {
       videoUrl: ['', Validators.required],
       duration: ['', [Validators.required, Validators.min(1)]], 
     });
+
+     this.instructorService.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
   }
 
   onImageUpload(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.courseImage = file;
-      console.log('Course Image Selected:', file);
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.uploadedImagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+
+    
     }
   }
+
+
 
   
 
@@ -68,7 +70,7 @@ export class AddCourseComponent {
         ...this.courseForm.value,
         instructorId: this.authService.loggedUser.id,
       };
-      console.log(courseDTO);
+
   
       const formData = new FormData();
       formData.append('CourseDTO', new Blob([JSON.stringify(courseDTO)], { type: 'application/json' }));

@@ -1,21 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ManageCourseService } from '../manageCourse.service';
-import { UserService } from '../user.service';
+import { UserService } from '../../Services/user.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { courseDetails } from '../courses/courses.component';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { SafeUrl } from '@angular/platform-browser';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { forkJoin } from 'rxjs';
+import { MyCourse } from 'src/app/models/Course';
 
 
-export interface MyCourse{
-id:number,
-status:string,
-courseId:number,
-userId:number
-}
+
 
 export interface courseDetails2{
    categoryId: number,
@@ -60,14 +56,14 @@ export class MyCoursesComponent {
         })
       )
       .subscribe((courses: courseDetails2[]) => {
-        console.log(courses);
+      
         this.proj = courses;
         this.dataSource = new MatTableDataSource(this.proj);
         this.userService.emitEnrolledCourses(courses)
       });
       }
 
-      console.log("tanmay");
+    
      
      })
 
@@ -79,19 +75,17 @@ export class MyCoursesComponent {
        })
      )
      .subscribe((courses: courseDetails2[]) => {
-       console.log(courses);
+    
        this.proj = courses;
        this.dataSource = new MatTableDataSource(this.proj);
        this.userService.emitEnrolledCourses(courses)
      });
 
-     console.log("called");
+  
 
   }
 
   navigateToWatch(id: number): void {
-    
-    console.log(id);
     this.router.navigateByUrl(`/user/watch-course/${id}`);
   }
 }

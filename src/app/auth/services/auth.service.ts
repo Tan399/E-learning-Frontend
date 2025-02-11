@@ -25,10 +25,9 @@ loggedUser:LoggedUser={
     
     this.loggedUser.role=role;
     this.loggedUser.id=id;
-    console.log(this.loggedUser)
+ 
     this.userRole = role; 
-    localStorage.setItem('userRole', role);
-    this.userRole = role; 
+
     localStorage.setItem('token', token); 
     this.Logged.emit(true);
   }
@@ -39,7 +38,7 @@ loggedUser:LoggedUser={
     this.userRole = "";
     this.loggedUser.role=""
     this.loggedUser.id=0
-    // localStorage.removeItem('userRole');
+
     localStorage.removeItem('token');
     this.Logged.emit(false);
   }

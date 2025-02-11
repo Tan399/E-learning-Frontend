@@ -6,9 +6,11 @@ import { UploadQuizComponent } from './upload-quiz/upload-quiz.component';
 import { EnrolledusersComponent } from './enrolledusers/enrolledusers.component';
 import { InstructorResultComponent } from './instructor-result/instructor-result.component';
 import { InstructorPaymentsComponent } from './instructor-payments/instructor-payments.component';
+import { InstructorAuthGuard } from './auth-guard/instructor-auth.guard';
+import { AddCourseGuard } from './auth-guard/AddCourseGuard.guard';
 
 const routes: Routes = [
-  { path: 'add-course', component: AddCourseComponent },
+  { path: 'add-course', component: AddCourseComponent,canDeactivate:[AddCourseGuard] },
   { path: 'manage-courses', component: ManageCoursesComponent },
   { path: 'upload-quiz', component: UploadQuizComponent },
   { path: 'enrolled-users', component: EnrolledusersComponent },

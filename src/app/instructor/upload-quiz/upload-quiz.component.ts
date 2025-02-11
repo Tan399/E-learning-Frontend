@@ -1,10 +1,11 @@
 import { QuizService } from 'src/app/Services/QuizService.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { InstructorService } from '../instructor.service';
+import { InstructorService } from '../../Services/instructor.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CourseService } from 'src/app/Services/CourseService.service';
 import { course2 } from 'src/app/models/course2';
+import { answer, questions, Quiz2 } from 'src/app/models/Quiz';
 
 @Component({
   selector: 'app-upload-quiz',
@@ -33,15 +34,11 @@ export class UploadQuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loadCourses();
+  
     this.loadCoursesWithoutQuizzes();
   }
 
-  // loadCourses() {
-  //   this.instuctorService.getInstructorCourses().subscribe((courses) => {
-  //     this.courses = courses;
-  //   });
-  // }
+
 
   loadCoursesWithoutQuizzes() {
     this.courseService.getCoursesWithoutQuizzes().subscribe({
@@ -87,15 +84,15 @@ export class UploadQuizComponent implements OnInit {
         return;
       }
     
-      const quizData = this.quizForm.value;
-      console.log(quizData);
+      const quizData:Quiz2 = this.quizForm.value;
+  
     
   
   
     
-      quizData.questions.forEach((question: any) => {
+      quizData.questions.forEach((question: questions) => {
         const answersU = new Set<string>();
-        question.answers.forEach((answer: any, index: number) => {
+        question.answers.forEach((answer: answer, index: number) => {
         answersU.add(answer.answerText);
         });
         if(answersU.size!=4){
@@ -127,6 +124,7 @@ export class UploadQuizComponent implements OnInit {
     }else{
       this.snackBar.open('Please Add question first', 'Close', { duration: 300});
     }
+    // console.log(this.quizForm.value);
    
   }
   

@@ -3,9 +3,10 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import {  MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { InstructorService } from '../instructor.service';
+import { InstructorService } from '../../Services/instructor.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Payment2 } from 'src/app/user/course-details/course-details.component';
+import { Payment2 } from 'src/app/models/Payment';
+
 
 @Component({
   selector: 'app-instructor-payments',
@@ -30,7 +31,8 @@ export class InstructorPaymentsComponent {
   loadCoursePayments(instructorId: number) {
     this.paymentService.getPaymentsForInstructor(instructorId).subscribe(
       (results: Payment2[]) => {
-        console.log(results);
+      
+      
         this.dataSource.data = results;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

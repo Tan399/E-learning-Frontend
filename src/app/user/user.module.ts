@@ -27,10 +27,12 @@ import {DialogModule} from '@angular/cdk/dialog';
 import { UserScoresComponent } from './user-scores/user-scores.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { PaymentdialogComponent } from './paymentdialog/paymentdialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [HomeComponent, CoursesComponent, MyCoursesComponent, CourseDetailsComponent, WatchCourseComponent, UserScoresComponent],
+  declarations: [HomeComponent, CoursesComponent, MyCoursesComponent, CourseDetailsComponent, WatchCourseComponent, UserScoresComponent, PaymentdialogComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -51,7 +53,8 @@ import { MatSortModule } from '@angular/material/sort';
     DialogModule,
     MatRadioModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ]
 })
 export class UserModule {}

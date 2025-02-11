@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Confirm Payment</h2>
+<mat-dialog-content>
+  <p>You are about to make a payment of <strong>{{ data.amount | currency:'INR':'symbol-narrow':'4.2-2' }}</strong> for the course: <strong>{{ data.courseName }}</strong>.</p>
+  <p>Do you want to proceed?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-raised-button color="primary" (click)="confirmPayment()">Yes, Proceed</button>
+</mat-dialog-actions>

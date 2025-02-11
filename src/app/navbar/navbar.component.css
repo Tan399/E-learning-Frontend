@@ -9,7 +9,8 @@
     font-size: 1.5rem;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
-    margin-left: 30px;
+    margin-left: 10px;
+    padding-bottom: 3px;
   }
 
   :host {
@@ -18,9 +19,10 @@
     align-items: flex-start;
   }
 
- /* .cart{
-  margin-top: 10px;
- } */
+span img{
+  width: 50px;
+  margin-left: 5px;
+}
 
  mat-icon{
   padding-top: 10px;

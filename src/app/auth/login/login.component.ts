@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ApiCall, res } from '../services/apiCall.service';
+import { ApiCall } from '../services/apiCall.service';
+import { res } from 'src/app/models/LoginResponse';
 
 @Component({
   selector: 'app-login',
@@ -48,9 +49,15 @@ export class LoginComponent {
         this.authService.login(this.role, this.token,this.id);
         this.openSnackBar("Logged in successfully!!");
         this.router.navigate([this.role === 'USER' ? '/user/home' : '/instructor/manage-courses']);
-      }, (err) => {
-        console.log(err);
-        this.openSnackBar("Invalid credentials");
+      }, (error) => {
+  
+        if( error.status === 403){
+          this.openSnackBar("Invalid credentials");
+        }else{
+          this.openSnackBar("Something went wrong. Please try again.");
+        }
+       
+      
       });
 
     }

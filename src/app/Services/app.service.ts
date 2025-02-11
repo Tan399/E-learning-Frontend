@@ -1,6 +1,7 @@
 import { inject, Injectable } from "@angular/core";
-import { InstructorService } from "./instructor/instructor.service";
-import { categories } from "./models/categories";
+import { categories } from "../models/categories";
+import { InstructorService } from "./instructor.service";
+
 
 
 @Injectable({

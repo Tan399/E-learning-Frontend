@@ -1,15 +1,13 @@
 import { Component, inject, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { InstructorService } from '../instructor.service';
+import { InstructorService } from '../../Services/instructor.service';
 import { course2 } from 'src/app/models/course2';
+import { Feedback } from 'src/app/models/Feeback';
 
 
 
-export interface Feedback{
-  name:string,
-  feedback:string
-  }
+
 
 
 @Component({
@@ -31,11 +29,9 @@ instructorService:InstructorService=inject(InstructorService);
   ngOnInit(): void {
    
     this.feedbacks = [
-      { name: 'Tanmay', feedback: 'Great course!' },
-      { name: 'Dolly', feedback: 'Very helpful.' },
+
     ];
-console.log(this.data);
-    console.log(this.data.enrolledCount);
+
 
     this.enrolledUsers = this.data.enrolledCount || 0;
   }

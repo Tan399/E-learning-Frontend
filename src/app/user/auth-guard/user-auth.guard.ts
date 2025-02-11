@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { AuthService } from '../auth/services/auth.service';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { course2 } from '../models/course2';
-import { quizAttempt } from '../instructor/instructor-result/instructor-result.component';
+
+
+import { Quiz2 } from '../models/Quiz';
+import { quizAttempt } from '../models/QuizAttempt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
  
-  private baseUrl = 'http://localhost:8080/api/quizzes';
+  private baseUrl = 'http://localhost:8080/secure/instructor/api/quizzes';
 
   constructor(private http: HttpClient) {}
 
-  createQuiz(quizData: any) {
-    console.log(quizData);
-    return this.http.post(this.baseUrl, quizData);
+  createQuiz(quizData: Quiz2) {
+    
+    return this.http.post<Quiz2>(this.baseUrl, quizData);
   }
 
   getQuizResultsForInstructor(instructorId: number):Observable<quizAttempt[]> {

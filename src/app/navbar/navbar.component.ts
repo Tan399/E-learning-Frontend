@@ -24,7 +24,7 @@ export class NavbarComponent {
       }else{
         this.userRole = "";
       }
-      // this.router.navigate(['auth/login']);
+     
 
     })
   }

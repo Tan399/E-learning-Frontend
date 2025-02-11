@@ -1,50 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
+import { UserService } from '../../Services/user.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ManageCourseService } from '../manageCourse.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { forkJoin, switchMap, debounceTime } from 'rxjs';
-import { MyCourse } from '../my-courses/my-courses.component';
+
+import { InstructorService } from 'src/app/Services/instructor.service';
+import { categories } from 'src/app/models/categories';
+import { MatListOption } from '@angular/material/list';
+import { courseDetails, courseDetails2, MyCourse } from 'src/app/models/Course';
 
 
-export interface course {
-  courseid: number,
-  name: string,
-  description: string,
-  image: SafeUrl | null,
-  price: string,
-  level: string,
-  enrolled: number,
-  category: string,
-  duration: number
-}
-
-export interface courseDetails {
-  category: string,
-  courseImage: SafeUrl | null,
-  courseid: number,
-  coursename: string,
-  description: string,
-  duration: number,
-  enrolledCount: number,
-  level: string,
-  price: number,
-  videoUrl: string
-}
-export interface courseDetails2 {
-  categoryId: number,
-  courseImage: SafeUrl | null,
-  courseid: number,
-  coursename: string,
-  description: string,
-  duration: number,
-  instructorId:number
-  enrolledCount: number,
-  level: string,
-  price: number,
-  videoUrl: string
-}
 
 @Component({
   selector: 'app-courses',
@@ -52,17 +19,7 @@ export interface courseDetails2 {
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent {
-  categories = [
-    '3D & Animation',
-    'Affiliate Marketing',
-    'Business',
-    'Design',
-    'Graphic Design',
-    'Marketing',
-    'Calculus',
-    'Health & Fitness',
-    "Photography'",
-    'Development'
+  categories:categories[] = [
   ];
 
   userService: UserService = inject(UserService);
@@ -76,20 +33,20 @@ export class CoursesComponent {
   filteredCourses: courseDetails[] = [];
   manage:ManageCourseService=inject(ManageCourseService)
   authService:AuthService=inject(AuthService)
-  constructor(private router: Router, private sanitizer: DomSanitizer) {
+  constructor(private router: Router, private sanitizer: DomSanitizer,private instructorService:InstructorService) {
     this.manage.courseUpdated.subscribe((d)=>{
       if(d){
         this.courses=this.manage.courses
-        this.userService.enrolledCourseByUserId(this.authService.loggedUser  .id)
+        this.userService.enrolledCourseByUserId(this.authService.loggedUser.id)
         .pipe(
-          debounceTime(500), 
+          debounceTime(1000),
           switchMap((data: MyCourse[]) => {
             const courseIds = data.map(d => d.courseId);
             return forkJoin(courseIds.map(id => this.userService.getCourseById(id)));
           })
         )
         .subscribe((courses: courseDetails2[]) => {
-          console.log(courses);
+      
         this.enrolledCourses=courses
         
         this.filterCourses();
@@ -108,7 +65,10 @@ export class CoursesComponent {
      this.filterCourses();
     
     })
-     console.log(this.enrolledCourses);
+
+    this.instructorService.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
      
     
   }
@@ -153,11 +113,11 @@ export class CoursesComponent {
         return this.selectedCategories.includes(course.category); 
       })
       .filter(course => {
-        // console.log(this.enrolledCourses.length);
+     
         if (!this.enrolledCourses) {
           return true;
         }
-        console.log(!this.enrolledCourses.some(enrolledCourse => enrolledCourse.courseid == course.courseid));
+       
         return !this.enrolledCourses.some(enrolledCourse => enrolledCourse.courseid == course.courseid);
       })
       .sort((a, b) => {
@@ -187,7 +147,8 @@ export class CoursesComponent {
   }
 
   
-  onCategoryChange(selectedOptions: any[]) {
+  onCategoryChange(selectedOptions: MatListOption[]) {
+    console.log(selectedOptions);
     this.selectedCategories = selectedOptions.map(option => option.value); 
   this.filterCourses();
   }

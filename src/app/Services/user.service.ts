@@ -1,11 +1,15 @@
 import { HttpClient } from "@angular/common/http";
 import { EventEmitter, inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import {  courseDetails } from "./courses/courses.component";
-import { Enrollment } from "./course-details/course-details.component";
-import { enrollmentResponse } from "../Services/enrollmentResponse";
-import { courseDetails2 } from "./my-courses/my-courses.component";
-import { Feedback2, Quiz, QuizAttempt } from "./watch-course/watch-course.component";
+
+
+import { enrollmentResponse } from "./enrollmentResponse";
+import { courseDetails2 } from "../user/my-courses/my-courses.component";
+
+import { Enrollment } from "../models/Enrollment";
+import { courseDetails } from "../models/Course";
+import { Feedback2, Quiz, QuizAttempt } from "../models/tempModels";
+
 
 
 
@@ -22,19 +26,18 @@ export class UserService{
   update:EventEmitter<boolean>=new EventEmitter();
 
   updatefunc(){
-    console.log("updated");
+  
     this.update.emit(true)
     
   }
 
-    private baseUrl = 'http://localhost:8080/api';
+    private baseUrl = 'http://localhost:8080/secure/instructor/api';
+    private baseUrl2='http://localhost:8080/api'
     http:HttpClient=inject(HttpClient);
 
     constructor(){}
 
-    submitQuiz(courseId: number, answers: any[]): Observable<any> {
-        return this.http.post(`${this.baseUrl}/courses/${courseId}/quiz`, { answers });
-      }
+  
 
       getCourses():Observable<courseDetails[]>{
         return this.http.get<courseDetails[]>(`${this.baseUrl}/courses`);
@@ -48,7 +51,7 @@ export class UserService{
       }
 
     fetchImage(id:number): Observable<Blob>{
-return this.http.get(`http://localhost:8080/api/courses/${id}/image`, { responseType: 'blob' })
+return this.http.get(`${this.baseUrl}/courses/${id}/image`, { responseType: 'blob' })
     }
 
     enrolledCourse(obj:Enrollment){
@@ -59,10 +62,10 @@ return this.http.get(`http://localhost:8080/api/courses/${id}/image`, { response
     }
 
     getQuizzByCourse(courseId: number): Observable<Quiz> {
-      return this.http.get<Quiz>(`http://localhost:8080/api/quizzes/${courseId}`);
+      return this.http.get<Quiz>(`${this.baseUrl}/quizzes/${courseId}`);
     }
   
-    submitQuizAttempt(attempt: QuizAttempt): Observable<any> {
-      return this.http.post(`http://localhost:8080/api/quiz-attempts/attempt`, attempt);
+    submitQuizAttempt(attempt: QuizAttempt): Observable<QuizAttempt> {
+      return this.http.post<QuizAttempt>(`${this.baseUrl2}/quiz-attempts/attempt`, attempt);
     }
 }

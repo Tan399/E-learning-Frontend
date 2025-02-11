@@ -1,7 +1,7 @@
 <div class="outer">
 <div class="enrolled-users-container">
-    <h2>Enrolled Users</h2>
-    
+    <h2>Enrolled Users    <button class="btn" mat-raised-button color="accent" (click)="scrollToChart()">View As Chart</button></h2>
+ 
     <input type="text" placeholder="Search..." [formControl]="searchControl" />
     
   
@@ -26,5 +26,17 @@
     </table>
   
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    
+
   </div>
+    
+
+
+  <div class="chart" #chart>
+    <mat-card class="card">
+      <app-enrollment-chart></app-enrollment-chart>
+    </mat-card>
+  </div>
+
+
 </div>

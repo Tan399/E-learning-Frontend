@@ -2,8 +2,8 @@
   <aside class="sidebar">
     <h3>Category</h3>
     <mat-selection-list #categoryList (selectionChange)="onCategoryChange(categoryList.selectedOptions.selected)">
-      <mat-list-option *ngFor="let category of categories"  [value]="category">
-        {{ category }}
+      <mat-list-option *ngFor="let category of categories"  [value]="category.title">
+        {{ category.title }}
       </mat-list-option>
     </mat-selection-list>
   </aside>

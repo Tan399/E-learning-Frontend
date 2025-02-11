@@ -1,15 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { res } from "src/app/models/LoginResponse";
 import { User } from "src/app/models/User";
-import { User2 } from "../register/register.component";
+import { User2 } from "src/app/models/User2";
 
 
-export interface res{
-    token:string,
-    role:string,
-    id:number
-  }
+
+
   
 
 
@@ -18,13 +16,14 @@ export interface res{
 })
 export class ApiCall{
 http:HttpClient=inject(HttpClient);
+baseUrl:string="http://localhost:8080"
     constructor() { 
 
         
     }
 
     register(user:User2,role:string){
-       return this.http.post(`http://localhost:8080/register/${role.toUpperCase()}`,user)
+       return this.http.post(`${this.baseUrl}/register/${role.toUpperCase()}`,user)
 
 
     }
@@ -32,6 +31,6 @@ http:HttpClient=inject(HttpClient);
 
     logginToServer(email:string,password:string):Observable<res>{
        
-        return this.http.post<res>('http://localhost:8080/login',{email:email,password:password})
+        return this.http.post<res>(`${this.baseUrl}/login`,{email:email,password:password})
     }
 }

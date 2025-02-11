@@ -5,16 +5,12 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { QuizService } from 'src/app/Services/QuizService.service';
 import {  MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { quizAttempt } from 'src/app/models/QuizAttempt';
 
 
 
 
-export interface quizAttempt{
-courseName:string,
-quizTitle:string,
-score:number,
-studentName:string
-}
+
 
 @Component({
   selector: 'app-instructor-result',
@@ -26,7 +22,7 @@ export class InstructorResultComponent {
   authService=inject(AuthService)
 
   displayedColumns: string[] = ['courseName', 'quizTitle', 'studentName', 'score'];
-  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+  dataSource: MatTableDataSource<quizAttempt> = new MatTableDataSource();
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
 
@@ -40,7 +36,7 @@ export class InstructorResultComponent {
   loadQuizResults(instructorId: number) {
     this.quizService.getQuizResultsForInstructor(instructorId).subscribe(
       (results: quizAttempt[]) => {
-        console.log(results);
+ 
         this.dataSource.data = results;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

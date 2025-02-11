@@ -1,42 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../user.service';
+import { UserService } from '../../Services/user.service';
 import { courseDetails2 } from '../my-courses/my-courses.component';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Feedback2, Quiz, QuizAttempt } from 'src/app/models/tempModels';
 
-export interface Feedback2 {
-  feedback: string;
-  courseId: number;
-  userId: number;
-}
-
-export interface Answer {
-  answerId: number;
-  answerText: string;
-  correct: boolean;
-}
-
-export interface Question {
-  questionId: number;
-  questionText: string;
-  correctAnswerIndex: number;
-  answers: Answer[];
-}
-
-export interface Quiz {
-  quizId: number;
-  title: string;
-  description: string;
-  questions: Question[];
-  quizAttempts: QuizAttempt[];
-}
-
-export interface QuizAttempt {
-  userId: number;
-  quizId: number;
-  score: number;
-}
 
 @Component({
   selector: 'app-watch-course',
@@ -86,7 +55,7 @@ export class WatchCourseComponent implements OnInit {
 
   loadQuizzes(): void {
     this.userService.getQuizzByCourse(this.courseId).subscribe((quiz: Quiz) => {
-      console.log(quiz);
+     
       this.quiz = quiz;
       this.selectedAnswers = new Array(quiz.questions.length).fill(null);
 
@@ -95,7 +64,7 @@ export class WatchCourseComponent implements OnInit {
       this.hasAttempted = quiz.quizAttempts.some(attempt => attempt.userId === userId);
       this.isQuizAvailable=true
     },(err)=>{
-console.log(err);
+
     });
   }
 
@@ -151,10 +120,10 @@ console.log(err);
         this.val.push(`*Correct Answer For Question Number ${key} is ${this.map.get(+key)}`)
       }
      }
-                // this.hasAttempted = true; 
+                
                 this.nohide=false;
             } else {
-              console.log(err);
+           
                 this.snackBar.open('Error submitting quiz attempt!', 'Close', { duration: 3000 });
             }
         }

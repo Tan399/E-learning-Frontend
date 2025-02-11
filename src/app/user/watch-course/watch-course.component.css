@@ -3,8 +3,16 @@
   max-width: 900px;
   margin: 30px auto;
   padding: 20px;
+
 }
 
+.outer{
+  width: 99vw;
+
+  background: #d0dbee;
+  padding-top: 30px;
+  
+}
 
 .course-video-card, .feedback-card, .quiz-card {
   margin-bottom: 30px;
@@ -15,7 +23,7 @@
 .course-video-card mat-card-header,
 .feedback-card mat-card-header,
 .quiz-card mat-card-header {
-  background-color: #f5f5f5;
+  /* background-color: white; */
   color: #333;
   border-radius: 8px 8px 0 0;
 }
@@ -83,7 +91,7 @@ h1, h2 {
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
-  background-color: #f5f5f5;
+ 
   border-radius: 8px;
 }
 
@@ -124,7 +132,7 @@ h1, h2 {
 }
 
 .quiz-container {
-  background-color: #f5f5f5;
+
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;

@@ -1,10 +1,12 @@
 import { EventEmitter, inject, Injectable } from "@angular/core";
-import { courseDetails } from "./courses/courses.component";
-import { UserService } from "./user.service";
-import { Enrollment, Payment } from "./course-details/course-details.component";
-import { enrollmentResponse } from "../Services/enrollmentResponse";
+
+import { UserService } from "../Services/user.service";
+
 import { timer } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
+import { Enrollment } from "../models/Enrollment";
+import { Payment } from "../models/Payment";
+import { courseDetails } from "../models/Course";
 
 @Injectable({
     providedIn:"root"
@@ -12,6 +14,7 @@ import { HttpClient } from "@angular/common/http";
 export class ManageCourseService{
     userService:UserService=inject(UserService)
     courses:courseDetails[]=[]
+    url:string='http://localhost:8080/api/payments'
     http:HttpClient=inject(HttpClient)
 
 
@@ -22,6 +25,7 @@ export class ManageCourseService{
     getCourses(){
        return this.userService.getCourses().subscribe((data)=>{
             this.courses=data
+        
             timer(500).subscribe(() => {
                 this.courseUpdated.emit(true)
             })
@@ -31,10 +35,10 @@ export class ManageCourseService{
 
 
     doPayment(data:Payment){
-      return  this.http.post("http://localhost:8080/api/payments",data)
+      return  this.http.post(`${this.url}`,data)
     }
 
-    setCourse(data:any){
+    setCourse(data:courseDetails[]){
            this.courses=data
     }
 

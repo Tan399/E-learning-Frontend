@@ -1,13 +1,14 @@
 import { Component, inject, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { InstructorService } from '../instructor.service';
-import { course2 } from 'src/app/models/course2';
-import { AppService } from 'src/app/app.service';
+import { InstructorService } from '../../Services/instructor.service';
+import { course2, InitialFormValue } from 'src/app/models/course2';
+
 import { categories } from 'src/app/models/categories';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppService } from 'src/app/Services/app.service';
 
 @Component({
   selector: 'app-edit-course',
@@ -23,7 +24,7 @@ export class EditCourseComponent implements OnInit {
   categories: categories[] = [];
   selectedFile: File | null = null;
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  private initialFormValues: any;
+  private initialFormValues!: InitialFormValue;
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +36,7 @@ export class EditCourseComponent implements OnInit {
       coursename: [data.coursename, [Validators.required]],
       description: [
         data.description,
-        [Validators.required, Validators.minLength(40), Validators.maxLength(50)],
+        [Validators.required, Validators.minLength(40), Validators.maxLength(120)],
       ],
       level: [data.level, [Validators.required]],
       categoryId: [data.categoryId, [Validators.required]],
@@ -49,20 +50,25 @@ export class EditCourseComponent implements OnInit {
     });
 
     this.instructorService.getCourseImage(data.courseid).subscribe((blob) => {
+    
       const objectURL = URL.createObjectURL(blob);
+    
       this.uploadedImagePreview = this.sanitizer.bypassSecurityTrustUrl(objectURL);
     });
   }
 
   ngOnInit(): void {
     this.initialFormValues = this.editCourseForm.getRawValue();
+    console.log(this.initialFormValues);
     if (this.data.courseImage) {
       this.uploadedImagePreview = this.data.courseImage;
     }
   }
 
-  onImageUpload(event: any): void {
-    const file = event.target.files[0];
+  onImageUpload(event: Event  ): void {
+    const element = event.currentTarget as HTMLInputElement;
+    const file = element.files![0]
+
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -93,7 +99,7 @@ export class EditCourseComponent implements OnInit {
         ...this.editCourseForm.value,
         instructorId: this.authService.loggedUser.id,
       };
-      console.log(courseDTO);
+    
 
       const formData = new FormData();
       formData.append(

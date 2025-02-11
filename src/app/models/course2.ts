@@ -10,3 +10,14 @@ export interface course2{
   courseImage:string | ArrayBuffer | null,
   duration:number
 }
+
+export interface InitialFormValue{
+  courseid: number,
+  coursename: string,
+  description: string,
+  level: string,
+  price: number,
+  videoUrl:string,
+  duration:number
+}
+

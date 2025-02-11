@@ -4,16 +4,11 @@ import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ApiCall } from '../services/apiCall.service';
+import { User2 } from 'src/app/models/User2';
 
 
 
-export interface User2{
-  password:string;
-   firstname:string;
-    lastname:string;
-   email:string;
-    gender:string;
-}
+
 
 @Component({
   selector: 'app-register',
@@ -59,13 +54,13 @@ export class RegisterComponent {
         }, 1500)
         this.router.navigate(['/auth/login']);
       },(error)=>{
-        console.log(error);
+
         this._snackBar.open("Email ready exists");
         setTimeout(() => {
           this._snackBar.dismiss()
         }, 1500)
       })
-      console.log('User  Registered:', this.registerForm.value);
+
 
    
 

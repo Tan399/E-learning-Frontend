@@ -1,12 +1,34 @@
 .outer{
   width: 99vw;
-  height: 100vh;
+  /* height: 100vh; */
   /* display: flex;
   justify-content: center;
   align-items: center; */
   background: #d0dbee;
   padding-top: 30px;
   
+}
+.btn{
+  position: relative;
+  left: 65%;
+  bottom: 10%;
+}
+
+.main{
+  margin: 50px;
+}
+.card{
+  padding: 20px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.chart{
+  width: 60%;
+  margin: 50px auto;
+  padding-bottom: 50px;
+}
+
+.container{
+  padding: 60px;
 }
 .enrolled-users-container input {
     margin-bottom: 20px;
@@ -30,7 +52,7 @@
     margin-top: 0;
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: #0c0c0c;
   }
   
   .enrolled-users-container table {

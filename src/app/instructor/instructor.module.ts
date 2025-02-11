@@ -26,12 +26,14 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { InstructorResultComponent } from './instructor-result/instructor-result.component';
 import { InstructorPaymentsComponent } from './instructor-payments/instructor-payments.component';
+import { EnrollmentChartComponent } from './enrollment-chart/enrollment-chart.component';
+import { AddCourseGuard } from './auth-guard/AddCourseGuard.guard';
 
 
 
 
 @NgModule({
-  declarations: [AddCourseComponent, ManageCoursesComponent, CourseDetailsComponent, EditCourseComponent, UploadQuizComponent, EnrolledusersComponent,DeleteDialogueComponent, InstructorResultComponent, InstructorPaymentsComponent],
+  declarations: [AddCourseComponent, ManageCoursesComponent, CourseDetailsComponent, EditCourseComponent, UploadQuizComponent, EnrolledusersComponent,DeleteDialogueComponent, InstructorResultComponent, InstructorPaymentsComponent, EnrollmentChartComponent],
   imports: [
     CommonModule,
     InstructorRoutingModule,
@@ -52,6 +54,7 @@ import { InstructorPaymentsComponent } from './instructor-payments/instructor-pa
     MatExpansionModule,
     MatListModule,
     MatCheckboxModule
-  ]
+  ],
+  providers:[AddCourseGuard]
 })
 export class InstructorModule {}

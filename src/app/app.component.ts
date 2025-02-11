@@ -11,15 +11,7 @@ export class AppComponent {
   constructor(private router: Router, private loaderService: LoaderService) {}
 
   ngOnInit() {
-   this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-       
-        this.loaderService.show();
-      } else if (event instanceof NavigationEnd || event instanceof NavigationError) {
-        
-        this.loaderService.hide();
-      }
-    });
+
   }
 
 

@@ -37,14 +37,7 @@
 }
 
 
-.mat-header-cell {
-  font-weight: bold;
-  background: #3f51b5;
-  color: white;
-  text-align: center;
-  /* padding: 12px; */
-  white-space: nowrap; 
-}
+
 
 
 .mat-row:nth-child(odd) {
@@ -52,14 +45,7 @@
 }
 
 
-.mat-cell {
-  /* padding: 12px; */
-  font-size: 14px;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis; 
-  white-space: nowrap; 
-}
+
 
 
 .mat-icon-button {
@@ -81,3 +67,35 @@
 button.mat-icon-button {
   margin: 0 5px;
 }
+
+
+.paginator {
+
+  border: 1px solid #ddd;
+}
+
+
+
+
+ .ng-container{
+  text-align: center;
+ }
+
+
+
+  .head, .data {
+    border: 1px solid #ddd;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+
+  .head{
+    background-color: #adbce5 !important;
+    color: rgb(36, 36, 36);
+    font-weight: bold;
+  
+  }
+
+  

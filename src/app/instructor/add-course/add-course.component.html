@@ -35,7 +35,7 @@
           <mat-label>Category</mat-label>
           <mat-icon matPrefix>category</mat-icon>
           <mat-select formControlName="categoryId">
-            <mat-option *ngFor="let category of categories; let i=index" [value]="i+1">{{ category }}</mat-option>
+            <mat-option *ngFor="let category of categories; let i=index" [value]="i+1">{{ category.title }}</mat-option>
           </mat-select>
           <mat-error *ngIf="courseForm.get('categoryId')?.invalid">Category is required</mat-error>
         </mat-form-field>
@@ -58,6 +58,9 @@
           <mat-icon>image</mat-icon>
           <label for="image-upload">Course Image:</label>
           <input #image id="image-upload" type="file" accept="image/*" (change)="onImageUpload($event)" />
+          <div *ngIf="uploadedImagePreview">
+            <img [src]="uploadedImagePreview" alt="Course Image" width="150" />
+          </div>
         </div>
 
         <mat-form-field class="full-width">

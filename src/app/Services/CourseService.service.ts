@@ -7,13 +7,11 @@ import { course2 } from '../models/course2';
   providedIn: 'root'
 })
 export class CourseService {
-  private baseUrl = 'http://localhost:8080/api';
+  private baseUrl = 'http://localhost:8080/secure/instructor/api';
 
   constructor(private http: HttpClient) {}
 
-  uploadQuiz(quizData: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/quizzes`, quizData);
-  }
+
 
   getCoursesWithoutQuizzes(): Observable<course2[]> {
     return this.http.get<course2[]>(`${this.baseUrl}/courses/without-quizzes`);

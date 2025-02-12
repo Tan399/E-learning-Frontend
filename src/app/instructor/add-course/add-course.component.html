@@ -1,0 +1,79 @@
+<div class="outer">
+  <div class="add-course-container">
+    <mat-card>
+      <h2>Add Course</h2>
+      <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+        
+        <mat-form-field class="full-width">
+          <mat-label>Course Name</mat-label>
+          <mat-icon matPrefix>book</mat-icon>
+          <input matInput formControlName="coursename" />
+          <mat-error *ngIf="courseForm.get('coursename')?.invalid">Course Name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Description</mat-label>
+          <mat-icon matPrefix>description</mat-icon>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error *ngIf="courseForm.get('description')?.hasError('minlength')">Description must be at least 40 characters long</mat-error>
+          <mat-error *ngIf="courseForm.get('description')?.hasError('maxlength')">Description cannot exceed 120 characters</mat-error>
+          <mat-error *ngIf="courseForm.get('description')?.hasError('required')">Description is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Level</mat-label>
+          <mat-icon matPrefix>school</mat-icon>
+          <mat-select formControlName="level">
+            <mat-option value="Beginner">Beginner</mat-option>
+            <mat-option value="Intermediate">Intermediate</mat-option>
+            <mat-option value="Advanced">Advanced</mat-option>
+          </mat-select>
+          <mat-error *ngIf="courseForm.get('level')?.invalid">Level is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Category</mat-label>
+          <mat-icon matPrefix>category</mat-icon>
+          <mat-select formControlName="categoryId">
+            <mat-option *ngFor="let category of categories; let i=index" [value]="i+1">{{ category.title }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="courseForm.get('categoryId')?.invalid">Category is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Price (₹)</mat-label>
+          <mat-icon matPrefix>attach_money</mat-icon>
+          <input matInput formControlName="price" type="number" />
+          <mat-error *ngIf="courseForm.get('price')?.invalid">Price is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Duration (Hours)</mat-label>
+          <mat-icon matPrefix>schedule</mat-icon>
+          <input matInput formControlName="duration" type="number" />
+          <mat-error *ngIf="courseForm.get('duration')?.invalid">Duration is required</mat-error>
+        </mat-form-field>
+
+        <div class="upload-section">
+          <mat-icon>image</mat-icon>
+          <label for="image-upload">Course Image:</label>
+          <input #image id="image-upload" type="file" accept="image/*" (change)="onImageUpload($event)" />
+          <div *ngIf="uploadedImagePreview">
+            <img [src]="uploadedImagePreview" alt="Course Image" width="150" />
+          </div>
+        </div>
+
+        <mat-form-field class="full-width">
+          <mat-label>Course Video URL</mat-label>
+          <mat-icon matPrefix>video_library</mat-icon>
+          <input matInput type="url" formControlName="videoUrl" />
+          <mat-error *ngIf="courseForm.get('videoUrl')?.invalid">Video URL is required</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">
+          <mat-icon>add_circle</mat-icon> Add Course
+        </button>
+      </form>
+    </mat-card>
+  </div>
+</div>

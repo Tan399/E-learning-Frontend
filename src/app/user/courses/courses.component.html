@@ -1,0 +1,54 @@
+<div class="courses-page">
+  <aside class="sidebar">
+    <h3>Category</h3>
+    <mat-selection-list #categoryList (selectionChange)="onCategoryChange(categoryList.selectedOptions.selected)">
+      <mat-list-option *ngFor="let category of categories"  [value]="category.title">
+        {{ category.title }}
+      </mat-list-option>
+    </mat-selection-list>
+  </aside>
+
+  <div class="main-content">
+    <div class="search-sort">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search</mat-label>
+        <input [(ngModel)]="searchVal" matInput placeholder="Search for courses" (input)="onSearchChange()" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="sort-dropdown">
+        <mat-label>Sort By</mat-label>
+        <mat-select (selectionChange)="onSortChange($event.value)">
+          <mat-option value="newest">Newest</mat-option>
+          <mat-option value="price">Price</mat-option>
+          <mat-option value="most-popular">Most Popular</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="courses-container">
+      <mat-card *ngFor="let course of filteredCourses" class="course-card">
+        <img mat-card-image [src]="course.courseImage" alt="{{ course.coursename }}" />
+
+        <mat-card-content>
+          <div class="card-header">
+            <span class="level-tag">{{ course.level }}</span>
+          </div>
+          <h3>{{ course.coursename }}</h3>
+          <p>{{ course.description }}</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <span class="course-meta">
+            ₹{{ course.price }}
+          </span>
+          <span class="course-meta">
+            <mat-icon>person</mat-icon> {{ course.enrolledCount }}
+          </span>
+          <button (click)="handleClick(course.courseid,course)" mat-raised-button color="primary">
+            Enroll
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

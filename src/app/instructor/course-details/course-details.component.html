@@ -1,0 +1,35 @@
+<div class="outer">
+<h2 mat-dialog-title class="dialog-title">{{ data.coursename }}</h2>
+
+<mat-dialog-content class="dialog-content">
+  <div class="course-info">
+    <p><strong>Description:</strong> {{ data.description }}</p>
+    <p><strong>Level:</strong> {{ data.level }}</p>
+    <p><strong>Price:</strong> ₹{{ data.price }}</p>
+    <p><strong>Users Enrolled:</strong> {{ enrolledUsers }}</p>
+  </div>
+
+  <h3><b>Feedbacks</b></h3>
+  <div *ngIf="feedbacks.length > 0; else noFeedbacks">
+    <div *ngFor="let feedback of feedbacks" class="feedback-item">
+      <mat-card class="feedback-card">
+        <mat-card-header>
+          <mat-card-title>{{ feedback.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ feedback.feedback }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <ng-template #noFeedbacks>
+    <p>No feedbacks available for this course.</p>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close >Close</button>
+</mat-dialog-actions>
+
+</div>

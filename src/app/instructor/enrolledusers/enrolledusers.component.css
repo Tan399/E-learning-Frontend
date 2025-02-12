@@ -1,0 +1,96 @@
+.outer{
+  width: 99vw;
+  /* height: 100vh; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  background: #d0dbee;
+  padding-top: 30px;
+  
+}
+.btn{
+  position: relative;
+  left: 65%;
+  bottom: 10%;
+}
+
+.main{
+  margin: 50px;
+}
+.card{
+  padding: 20px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.chart{
+  width: 60%;
+  margin: 50px auto;
+  padding-bottom: 50px;
+}
+
+.container{
+  padding: 60px;
+}
+.enrolled-users-container input {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 98%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .enrolled-users-container {
+    max-width: 900px;
+    margin: 0px auto;
+    padding: 20px;
+    background: #7082a1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .enrolled-users-container h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0c0c0c;
+  }
+  
+  .enrolled-users-container table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    color: #666;
+  }
+  
+
+
+  
+
+  .enrolled-users-container th, .enrolled-users-container td {
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .enrolled-users-container th {
+    background-color: #adbce5;
+    color: rgb(36, 36, 36);
+    font-weight: bold;
+    padding-left: 120px;
+    padding-right: 0;
+  }
+
+
+  .enrolled-users-container td {
+    background-color: #fff;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+
+  mat-header-cell{
+    border-right: 1px solid #080808;
+  }
+
+  mat-cell{
+    border-right: 1px solid #0a0a0a;
+  }

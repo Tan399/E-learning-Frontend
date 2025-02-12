@@ -1,0 +1,30 @@
+<div class="outer">
+  <mat-card class="results-container">
+    <mat-card-title>All Quiz Results for Your Courses</mat-card-title>
+    <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z14">
+      <ng-container matColumnDef="courseName">
+        <mat-header-cell class="head" *matHeaderCellDef mat-sort-header> Course Name </mat-header-cell>
+        <mat-cell class="data" *matCellDef="let element"> {{ element.courseName }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="quizTitle">
+        <mat-header-cell class="head" *matHeaderCellDef mat-sort-header> Quiz Title </mat-header-cell>
+        <mat-cell class="data" *matCellDef="let element"> {{ element.quizTitle }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="studentName">
+        <mat-header-cell class="head" *matHeaderCellDef mat-sort-header> Student Name </mat-header-cell>
+        <mat-cell class="data" *matCellDef="let element"> {{ element.studentName }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="score">
+        <mat-header-cell class="head" *matHeaderCellDef> Score </mat-header-cell>
+        <mat-cell class="data" *matCellDef="let element"> {{ element.score }} % </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>

@@ -1,0 +1,128 @@
+.home-container {
+    padding: 20px;
+    background-color: #f8faff; 
+    color: #333;
+  }
+  
+
+  .hero-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    background:rgb(9, 9, 56); 
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hero-content {
+    max-width: 50%;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .hero-content button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background:rgb(7, 151, 15);
+    
+   
+   
+  }
+
+  .hero-content button:hover{
+    background:rgb(56, 175, 62); 
+  }
+  
+  .hero-image {
+    max-width: 40%;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .features-section {
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+  .features-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .feature-card {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .feature-card img {
+    width: 100%;
+    height: 70%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  
+
+  .cta-section {
+    text-align: center;
+    padding: 25px;
+    background:rgb(9, 9, 56); 
+    color: #ffffff;
+    border-radius: 12px;
+    margin-top: 30px;
+  }
+  
+  .cta-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .cta-section p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .cta-section button {
+    font-size: 1rem;
+    padding: 10px 25px;
+    border-radius: 8px;
+    color: #1976d2;
+    background-color: #ffffff;
+    font-weight: bold;
+  }
+  

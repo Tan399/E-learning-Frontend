@@ -1,0 +1,25 @@
+<div class="course-details-page">
+  <div class="course-details-container">
+    <div class="course-image-container">
+      <img mat-card-image [src]="course?.courseImage" alt="{{ course?.coursename }}" class="course-image">
+    </div>
+    <div class="course-details-content">
+      <mat-card class="course-details-card">
+        <mat-card-content>
+          <h2 class="course-title">{{ course?.coursename }}</h2>
+          <p class="course-description">{{ course?.description }}</p>
+          <div class="course-info">
+            <p><strong>Level:</strong> {{ course?.level }}</p>
+            <p><strong>Duration:</strong> {{ course?.duration }} hours</p>
+            <p><strong>Enrolled Students:</strong> {{ course?.enrolledCount }}</p>
+            <p><strong>Price:</strong> {{ course?.price }}</p>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="card-actions">
+          <button (click)="handlePayment()" mat-raised-button color="primary" class="payment-button">Make Payment</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+

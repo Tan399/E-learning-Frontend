@@ -1,0 +1,40 @@
+<mat-toolbar  class="navbar">
+  <span><img src="assets/logo2.png" alt="logo" ></span>
+    <span class="logo">LearnDigital</span>
+    <span class="spacer"></span>
+  
+   
+    <ng-container *ngIf="userRole === 'USER'">
+      <a mat-button routerLink="user/home" routerLinkActive="active">Home</a>
+      <a mat-button routerLink="user/courses" routerLinkActive="active">Courses</a>
+      <a mat-button routerLink="user/my-courses" routerLinkActive="active">My Courses</a>
+      <a mat-button routerLink="user/quiz-scores" routerLinkActive="active">Quiz Scores</a>
+      
+    </ng-container>
+  
+  
+    <ng-container *ngIf="userRole === 'INSTRUCTOR'" routerLinkActive="active">
+      <a mat-button routerLink="/instructor/add-course" routerLinkActive="active">Add Course</a>
+      <a mat-button routerLink="/instructor/manage-courses" routerLinkActive="active">Manage Courses</a>
+      <a mat-button routerLink="/instructor/upload-quiz" routerLinkActive="active">Upload Quiz</a>
+      <a mat-button routerLink="/instructor/enrolled-users" routerLinkActive="active">Enrolled Users</a>
+      <a mat-button routerLink="/instructor/instructor-payments" routerLinkActive="active">Payments</a>
+      <a mat-button routerLink="/instructor/instructor-result" routerLinkActive="active">Quiz Results</a>
+    </ng-container>
+  
+    
+    <a mat-button routerLink="/auth/login" *ngIf="!userRole" routerLinkActive="active">Login</a>
+    <a mat-button routerLink="/auth/register" *ngIf="!userRole" routerLinkActive="active">Register</a>
+  
+    
+    
+
+    <button class="profile" mat-button [matMenuTriggerFor]="beforeMenu" *ngIf="userRole">Profile</button>
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+  <button  mat-menu-item (click)="profile()">My Profile</button>
+  <button  mat-menu-item (click)="chat()">Chat</button>
+  <button mat-menu-item (click)="logout()" >Logout</button>
+ 
+</mat-menu>
+  </mat-toolbar>
+  

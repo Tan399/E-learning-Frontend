@@ -1,0 +1,47 @@
+.payment-dialog {
+  width: 500px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  padding: 20px;
+}
+
+.payment-dialog-header {
+  background-color: #6200ea;
+  color: white;
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+}
+
+.payment-dialog-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.payment-dialog-actions {
+  padding: 20px;
+  text-align: center;
+}
+
+.payment-dialog-actions button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+.payment-dialog-actions button.mat-button {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.payment-dialog-actions button.mat-raised-button {
+  background-color: #6200ea;
+  color: white;
+}
+
+.payment-dialog-actions button.mat-raised-button:hover {
+  background-color: #3700b3;
+}

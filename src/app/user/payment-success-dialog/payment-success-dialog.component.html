@@ -1,0 +1,9 @@
+<mat-dialog-content>
+    <mat-icon class="success-icon">check_circle</mat-icon>
+    <h2 mat-dialog-title>Payment Successful!</h2>
+    <p>Thank you for your payment. Your transaction has been processed successfully.</p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <button (click)="handleExplore()" mat-button color="primary" [mat-dialog-close]="true">Explore More</button>
+  </mat-dialog-actions>

@@ -1,0 +1,52 @@
+  <div class="results-container" [ngClass]="{ 'full':!dataSource.data.length  }">
+    <div class="outer">
+<div class="payments-container">
+    <mat-card-title>Course Payments for Your Courses  <button *ngIf="dataSource.data.length" class="btn" mat-raised-button color="accent" (click)="scrollToChart()">View As Chart</button></mat-card-title>
+    <mat-table *ngIf="dataSource.data.length" matSort [dataSource]="dataSource" class="mat-elevation-z14">
+  
+      <ng-container matColumnDef="courseName">
+        <mat-header-cell class="head" *matHeaderCellDef mat-sort-header  > Course Name </mat-header-cell>
+        <mat-cell class="data" *matCellDef="let element"> {{ element.courseName }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="studentName" >
+        <mat-header-cell class="head" *matHeaderCellDef mat-sort-header  > Student Name </mat-header-cell>
+        <mat-cell class="data" *matCellDef="let element"> {{ element.studentName }}  </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="amount">
+        <mat-header-cell class="head" *matHeaderCellDef mat-sort-header > Amount </mat-header-cell>
+        <mat-cell class="data" *matCellDef="let element"> ₹ {{ element.paymentAmount  }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="paymentDate"  >
+        <mat-header-cell class="head" *matHeaderCellDef mat-sort-header> Payment Date </mat-header-cell>
+        <mat-cell class="data" *matCellDef="let element"> {{ element.paymentDate | date}} </mat-cell>
+      </ng-container>
+  
+    
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [ngClass]="{'hide':!dataSource.data.length}"   class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <h1 *ngIf="!dataSource.data.length">No records yet</h1>
+  </div>
+  
+</div>
+
+<div [ngClass]="{ 'full':!dataSource.data.length  }"  class="chart" #chart>
+  <mat-card class="card">
+    <h2>Category Wise Sales</h2>
+    <app-payment-chart [columns]="chartColumns" [data]="chartData"></app-payment-chart>
+  </mat-card>
+  
+</div>
+
+
+
+
+
+</div>
+
+  

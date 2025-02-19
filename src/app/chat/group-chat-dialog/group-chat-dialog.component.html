@@ -1,0 +1,25 @@
+<div class="outer">
+<h2 class="head" mat-dialog-title>Welcome To Group Chat {{username}}</h2>
+
+<mat-dialog-content>
+  <div #container class="chat-container mainn">
+    <ng-container *ngIf="messages.length">
+    <div  *ngFor="let message of messages" class="message" [ngClass]="{'my-message': message.name === username}">
+      <div class="message-bubble">
+        <span *ngIf="message.name != username" class="sender">{{ message.name }}: </span>
+        <mat-card class="m">
+        <span class="message-text">{{ message.content }}</span>
+      </mat-card>
+      </div>
+    </div>
+  </ng-container>
+  <h1 *ngIf="!messages.length">No messages received</h1>
+  </div>
+  <input class="textbox" matInput [(ngModel)]="newMessage" placeholder="Type a message">
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="close()">Close</button>
+  <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+ 
+</mat-dialog-actions>
+</div>

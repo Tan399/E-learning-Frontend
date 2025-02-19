@@ -1,0 +1,68 @@
+<div class="profile-container">
+    <mat-card class="mat-elevation-z8">
+      <mat-card-title class="mat-card-title">Profile</mat-card-title>
+      <mat-card-content>
+        <div class="profile-picture">
+          <img [src]="profilePicture" alt="Profile Picture" class="profile-picture-image">
+          <button mat-raised-button color="primary" (click)="uploadProfilePicture()">
+            <mat-icon>cloud_upload</mat-icon>
+            Upload Profile Picture
+          </button>
+          <input #fileinput type="file" (change)="onProfilePictureChange($event)" style="display: none;">
+        </div>
+        <H4>Role : {{role}}</H4>
+        <H4>Email : {{email}}</H4>
+        <form [formGroup]="profileForm" (ngSubmit)="onSaveProfile()">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName">
+            <mat-error *ngIf="profileForm.get('firstName')?.hasError('required')">First name is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+            <mat-error *ngIf="profileForm.get('lastName')?.hasError('required')">Last name is required</mat-error>
+          </mat-form-field>
+         
+          
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option value="male">Male</mat-option>
+              <mat-option value="female">Female</mat-option>
+              <mat-option value="other">Other</mat-option>
+            </mat-select>
+            <mat-error *ngIf="profileForm.get('gender')?.hasError('required')">Gender is required</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">
+            <mat-icon>save</mat-icon>
+            Save Profile
+          </button>
+        </form>
+        <form class="form2" [formGroup]="passwordForm" (ngSubmit)="onChangePassword()">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Current Password</mat-label>
+            <input matInput formControlName="currentPassword" type="password">
+            <mat-error *ngIf="passwordForm.get('currentPassword')?.hasError('required')">Current password is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>New Password</mat-label>
+            <input matInput formControlName="newPassword" type="password">
+            <mat-error *ngIf="passwordForm.get('newPassword')?.hasError('required')">New password is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Confirm New Password</mat-label>
+            <input matInput formControlName="confirmNewPassword" type="password" >
+            <mat-error *ngIf="passwordForm.get('confirmNewPassword')?.hasError('required')">Confirm new password is required</mat-error>
+            <mat-error *ngIf="passwordForm.get('confirmNewPassword')?.hasError('match')">Passwords do not match</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!passwordForm.valid">
+            <mat-icon>save</mat-icon>
+            Change Password
+          </button>
+        </form>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

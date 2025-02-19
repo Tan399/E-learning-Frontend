@@ -1,0 +1,45 @@
+.profile-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  .mat-card-title {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .profile-picture {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form2{
+    margin-top: 20px;
+  }
+  
+  .profile-picture-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    margin-bottom: 20px;
+  }
+  
+  .mat-raised-button {
+    margin-top: 20px;
+  }
